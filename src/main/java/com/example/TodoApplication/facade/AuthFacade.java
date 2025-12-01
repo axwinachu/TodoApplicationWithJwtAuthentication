@@ -13,4 +13,8 @@ public class AuthFacade {
     public ResponseEntity<String> signup(UserRequest userRequest) {
         return authService.signup(userRequest);
     }
+
+    public ResponseEntity<?> login(UserRequest userRequest) {
+        return authService.login(userRequest);
+    }
 }

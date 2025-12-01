@@ -19,5 +19,9 @@ public class AuthController {
     public ResponseEntity<String> signup(@RequestBody UserRequest userRequest){
         return authFacade.signup(userRequest);
     }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserRequest userRequest){
+        return authFacade.login(userRequest);
+    }
 
 }

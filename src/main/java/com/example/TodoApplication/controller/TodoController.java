@@ -4,6 +4,7 @@ import com.example.TodoApplication.dto.TodoRequest;
 import com.example.TodoApplication.facade.TodoFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TodoController {
     private final TodoFacade todoFacade;
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/getall")
     public ResponseEntity<?> getAllTask(){
        return todoFacade.getAll();
