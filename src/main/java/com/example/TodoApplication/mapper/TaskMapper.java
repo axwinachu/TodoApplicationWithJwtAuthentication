@@ -1,4 +1,4 @@
-package com.example.TodoApplication.Mapper;
+package com.example.TodoApplication.mapper;
 
 import com.example.TodoApplication.dto.TodoResponse;
 import com.example.TodoApplication.entity.Todo;
