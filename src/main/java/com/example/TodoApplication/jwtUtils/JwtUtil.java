@@ -3,6 +3,8 @@ package com.example.TodoApplication.jwtUtils;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
@@ -12,9 +14,15 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private String SECRET="abcdefghijklmnop_123456778etryhw5ruhjteu7j6tg76ij89999";
-    private int EXPIRATION=1000*60*10;
-    private Key SECRETKEY= Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+    @Value("${security.secret}")
+    private String SECRET;
+    @Value("${security.expiration}")
+    private int EXPIRATION;
+    private Key SECRETKEY;
+    @PostConstruct
+    public void init() {
+        this.SECRETKEY = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+    }
     public String generateToken(String email,String role){
         return Jwts.builder()
                 .setSubject(email)
